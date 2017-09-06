@@ -27,7 +27,9 @@
 	}
 
 	#sidebar {
-		width: 200px;
+		width: 150px;
+		background-color: lightgrey;
+		float: left;
 	}
 
 	.character-container {
@@ -38,14 +40,30 @@
 	}
 
 	.character-container img {
-		width: 150px;
-		height: 120px;
-		height: auto;
+		width: 100%;
+		height: 100%;
 	}
 
 	.character-container h3 {
 		text-align: center;
 	}
+
+	#content {
+		background-color: white;
+	}
+
+	.content-photo-container {
+		width: 300px;
+		height: 300px;
+		float: right;
+	}
+
+	.content-photo-container img {
+		width: 100%;
+	}
+
+
+
 	#footer {
 		height: 50px;
 		line-height: 50px;
@@ -67,20 +85,39 @@
 		<div id ="sidebar">
 
 			<div class="character-container">
-				<img src="CBale.jpg">
+				<img src="CBale.jpg" alt="Bale">
 				<h3>Batman</h3>
 			</div>
 
 			<div class="character-container">
-				<img src="Joker.jpg">
+				<img src="Joker.jpg" alt="Joker">
 				<h3>Joker</h3>
 			</div>
 
 			<div class="character-container">
-				<img src="Dent.jpg">
+				<img src="Dent.jpg" alt="Harvey Dent">
 				<h3>Harvey Dent</h3>
 			</div>
+		</div> 
+		<div class="clearfloat"></div>
 
+		<div id="content">
+			<div id="section">
+				<h3>Overview</h3>
+
+				<p>Christopher Nolan steps back into the director's chair for this sequel to Batman Begins, which finds the titular superhero coming face to face with his greatest nemesis -- the dreaded Joker. Christian Bale returns to the role of Batman, Maggie Gyllenhaal takes over the role of Rachel Dawes (played by Katie Holmes in Batman Begins), and Brokeback Mountain star Heath Ledger dons the ghoulishly gleeful Joker makeup previously worn by Jack Nicholson and Cesar Romero. Just as it begins to appear as if Batman, Lt. James Gordon (Gary Oldman), and District Attorney Harvey Dent (Aaron Eckhart) are making headway in their tireless battle against the criminal element, a maniacal, wisecracking fiend plunges the streets of Gotham City into complete chaos.</p>
+
+				
+				<div class="content-photo-container">
+					<img src="Batman&Co.jpg">
+				</div>
+
+				<p>Another Take: Set within a year after the events of Batman Begins, Batman, Lieutenant James Gordon, and new district attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City until a mysterious and sadistic criminal mastermind known only as the Joker appears in Gotham, creating a new wave of chaos. Batman's struggle against the Joker becomes deeply personal, forcing him to "confront everything he believes" and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent and Rachel Dawes.</p>
+				
+				<div class="clearfloat"></div>
+				
+			</div>
+			
 		</div>
 	</div> <!-- End of container holding columns -->
 
