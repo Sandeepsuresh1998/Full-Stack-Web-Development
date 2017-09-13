@@ -2,40 +2,43 @@
 <html>
 <head>
 	<title>The Dark Knight</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <style>
 	#header {
 		background-image: url("imgs/DarkKnight.jpg");
-		background-size: 100% 100%;
+		background-position: -400px;
+		width: 400px;
+		height: 400px;
 		text-align: center;
 		color: white;
-		height: 350px;
-		padding: 0;
 		position: relative;
 	}
 
 	h1 {
 		position: absolute;
-		width: 100%;
+		width: 100%
 	}
 
 	#container {
-		width: 800px;
-		background-color: lightgrey;
+		width: 400px;
 		margin: auto;
 	}
 
-	#sidebar {
-		width: 150px;
+	#character-box {
+		width: 300px;
 		background-color: lightgrey;
-		float: right;
 	}
 
 	.character-container {
 		height: 150px;
 		width: 150px;
 		margin-bottom: 50px;
+	}
+
+	.character-container:hover > h3 {
+		display: block;
 	}
 
 	.character-container img {
@@ -45,16 +48,16 @@
 
 	.character-container h3 {
 		text-align: center;
+		display: none;
 	}
 
 	#content {
 		background-color: white;
-		width: 650px;
+		width: 400px;
 	}
 
 	.content-photo-container {
 		width: 250px;
-		float: left;
 		padding: 5px;
 	}
 
@@ -82,11 +85,12 @@
 
 	<div id="container">
 
-		<div id ="sidebar">
+		<div id ="character-box">
 
 			<div class="character-container">
 				<img src="imgs/CBale.jpg" alt="Batman">
 				<h3>Batman</h3>
+
 			</div>
 
 			<div class="character-container">
@@ -110,7 +114,6 @@
 
 
 		</div> 
-		<div class="clearfloat"></div>
 
 		<div id="content">
 			<div class="section">
