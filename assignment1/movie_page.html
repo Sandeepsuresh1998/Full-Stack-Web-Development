@@ -6,6 +6,14 @@
 </head>
 
 <style>
+	.clearfloat {
+		clear: both;
+	}
+	#main-container{
+		width: 400px;
+		background-color: white;
+	}
+
 	#header {
 		background-image: url("imgs/DarkKnight.jpg");
 		background-position: -400px;
@@ -13,7 +21,9 @@
 		height: 400px;
 		text-align: center;
 		color: white;
+		margin: auto;
 		position: relative;
+		margin-bottom: 10px;
 	}
 
 	h1 {
@@ -28,13 +38,18 @@
 
 	#character-box {
 		width: 300px;
+		margin: auto;
 		background-color: lightgrey;
 	}
 
 	.character-container {
-		height: 150px;
-		width: 150px;
+		height: 140px;
+		width: 140px;
 		margin-bottom: 50px;
+		margin-right: 5px;
+		margin-left: 5px;
+		float: left;
+		
 	}
 
 	.character-container:hover > h3 {
@@ -49,6 +64,7 @@
 	.character-container h3 {
 		text-align: center;
 		display: none;
+		margin: 0px;
 	}
 
 	#content {
@@ -71,96 +87,154 @@
 		height: 50px;
 		line-height: 50px;
 		text-align: center;
-		background-color: #CCC;
+		background-color: lightgrey;
 		font-size: 0.8em;
 		margin-top: 30px; 
 	}
 
+	@media (min-width: 768px) {
+		#main-container {
+			width: 750px;
+		}
+		#header{ 
+			width: 750px;
+			height: 500px;
+			background-position: -220px;
+		}
+		#container {
+			width: 750px;
+		}
+		#character-box {
+			width: 500px;
+		}
+		.character-container {
+			width: 150px;
+		}
+		#content {
+			width: 750px;
+		}
+		.content-photo-container {
+			width: 400px;
+			float: right;
+		}
+	}
+
+	@media (min-width: 992px) {
+		#main-container {
+			width: 950px;
+			margin: auto;
+		}
+		#header {
+			width: 950px;
+			height: 500px;
+		}
+		#container {
+			width: 950px;
+			background-color: lightgrey;
+		}
+		#character-box {
+			width: 200px;
+			text-align: center;
+			float: left;
+		}
+		.character-container {
+			float: none;
+			margin-right: auto;
+			margin-left: auto;
+		}
+		#content {
+			float: left;
+			width: 730px;
+			padding: 10px;
+		}
+		#footer {
+			margin: 0px;
+		}
+	}
 </style>
 
 <body>
-	<div id="header">
-		<h1>The Dark Knight</h1>
-	</div>
 
-	<div id="container">
-
-		<div id ="character-box">
-
-			<div class="character-container">
-				<img src="imgs/CBale.jpg" alt="Batman">
-				<h3>Batman</h3>
-
-			</div>
-
-			<div class="character-container">
-				<img src="imgs/Joker.jpg" alt="Joker">
-				<h3>Joker</h3>
-			</div>
-
-			<div class="character-container">
-				<img src="imgs/Dent.jpg" alt="Harvey">
-				<h3>Harvey Dent</h3>
-			</div>
-
-			<div class="character-container">
-				<img src="imgs/LFox.jpg" alt="Lucius">
-				<h3>Lucius Fox</h3>
-			</div>
-			<div class="character-container">
-				<img src="imgs/RDawes.jpg" alt="Rachel">
-				<h3>Rachel Dawes</h3>
-			</div>
-
-
-		</div> 
-
-		<div id="content">
-			<div class="section">
-				<h3>Overview</h3>
-
-				<p>Christopher Nolan steps back into the director's chair for this sequel to Batman Begins, which finds the titular superhero coming face to face with his greatest nemesis -- the dreaded Joker. Christian Bale returns to the role of Batman, Maggie Gyllenhaal takes over the role of Rachel Dawes (played by Katie Holmes in Batman Begins), and Brokeback Mountain star Heath Ledger dons the ghoulishly gleeful Joker makeup previously worn by Jack Nicholson and Cesar Romero. Just as it begins to appear as if Batman, Lt. James Gordon (Gary Oldman), and District Attorney Harvey Dent (Aaron Eckhart) are making headway in their tireless battle against the criminal element, a maniacal, wisecracking fiend plunges the streets of Gotham City into complete chaos.</p>
-
-				
-				<div class="content-photo-container">
-					<img src="imgs/Batman&Co.jpg" alt = "Batman&Co">
-				</div>
-				<div class="clearfloat"></div>
-				<p>Another Take: Set within a year after the events of Batman Begins, Batman, Lieutenant James Gordon, and new district attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City until a mysterious and sadistic criminal mastermind known only as the Joker appears in Gotham, creating a new wave of chaos. Batman's struggle against the Joker becomes deeply personal, forcing him to "confront everything he believes" and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent and Rachel Dawes.</p>
-			</div> <!-- End of Section 1 -->
-
-			<div class="section">
-				<h3>Reviews</h3>
-
-				<p>“Batman” isn’t a comic book anymore. Christopher Nolan’s “The Dark Knight” is a haunted film that leaps beyond its origins and becomes an engrossing tragedy. It creates characters we come to care about. That’s because of the performances, because of the direction, because of the writing, and because of the superlative technical quality of the entire production. This film, and to a lesser degree “Iron Man,” redefine the possibilities of the “comic-book movie.”</p>
-
-				
-				<div class="content-photo-container">
-					<img src="imgs/JokerPhoto.jpg", alt="JokerContentPhoto">
-				</div>
-				<div class="clearfloat"></div>
-				<p>“The Dark Knight” is not a simplistic tale of good and evil. Batman is good, yes, The Joker is evil, yes. But Batman poses a more complex puzzle than usual: The citizens of Gotham City are in an uproar, calling him a vigilante and blaming him for the deaths of policemen and others. And the Joker is more than a villain. He’s a Mephistopheles whose actions are fiendishly designed to pose moral dilemmas for his enemies.</p>
-			</div> <!-- End of Section 2 -->
-
-			<div class="section">
-				<h3>Theme: The Terrible Logic of Human Nature</h3>
-
-				<p>What do people do when they are put in the worst of situations? What would you do if you were given the ultimate power over someone else? The movie touches upon these questions of human nature, but they are perhaps its least developed. We see this theme pop up several times, most notably in two separate instances. Firstly, it’s evident when Batman breaks into Wayne enterprises and gives Lucius Fox fee reign of the cell phone hackery he has perpetrated upon all of Gotham. Fox demurs, believing that one person should not have this power. People are so easily corrupted that even an initial desire to do good can ultimately lead to evil, the film seems to be saying. This is further confirmed as the entire video interface comes to a fiery end, in a spectacular Batman-programmed self-destruction.</p>
-
-				<div class="content-photo-container">
-					<img src="imgs/BatmanLogo.jpg", alt="BatmanLogo">
-				</div>
-				<div class="clearfloat"></div>
-
-				<p>We also see it at the very end, when two separate sets of people are given the ability to destroy each other. Given the lead-up to the film’s climactic action scene, it’s a little bit strange that the boat-bomb storyline ends in the way that it does: With both criminals and everyday citizens concluding that they won’t take another’s life just to preserve their own. Throughout the whole movie, Nolan seems to be trying to tell us we are all easily subject to the temptations of the dark side, but the rest of the movie is already so relentlessly dark that perhaps this ending was more palatable to general audiences.Humans can’t handle power responsibly. But maybe, in our shared humanity, there is still hope for compassion. </p>
-			</div>
-
+	<div id="main-container">
+		<div id="header">
+			<h1>The Dark Knight</h1>
 		</div>
-	</div> <!-- End of container holding columns -->
 
-	<div id="footer">
-		Developed by Sandeep Suresh for ITP 303 &copy; 2017
-	</div> <!-- #footer -->
-	
+		<div id="container">
+
+			<div id ="character-box">
+
+				<div class="character-container">
+					<img src="imgs/CBale.jpg" alt="Batman">
+					<h3>Batman</h3>
+				</div>
+
+				<div class="character-container">
+					<img src="imgs/Joker.jpg" alt="Joker">
+					<h3>Joker</h3>
+				</div>
+
+				<div class="character-container">
+					<img src="imgs/Dent.jpg" alt="Harvey">
+					<h3>Harvey Dent</h3>
+				</div>
+
+				<div class="character-container">
+					<img src="imgs/LFox.jpg" alt="Lucius">
+					<h3>Lucius Fox</h3>
+				</div>
+				<div class="character-container">
+					<img src="imgs/RDawes.jpg" alt="Rachel">
+					<h3>Rachel Dawes</h3>
+				</div>
+			<div class="clearfloat"></div>
+			</div>
+		
+			<div id="content">
+				<div class="section">
+					<h3>Overview</h3>
+
+					<p>Christopher Nolan steps back into the director's chair for this sequel to Batman Begins, which finds the titular superhero coming face to face with his greatest nemesis -- the dreaded Joker. Christian Bale returns to the role of Batman, Maggie Gyllenhaal takes over the role of Rachel Dawes (played by Katie Holmes in Batman Begins), and Brokeback Mountain star Heath Ledger dons the ghoulishly gleeful Joker makeup previously worn by Jack Nicholson and Cesar Romero. Just as it begins to appear as if Batman, Lt. James Gordon (Gary Oldman), and District Attorney Harvey Dent (Aaron Eckhart) are making headway in their tireless battle against the criminal element, a maniacal, wisecracking fiend plunges the streets of Gotham City into complete chaos.</p>
+
+					
+					<div class="content-photo-container">
+						<img src="imgs/Batman&Co.jpg" alt = "Batman&Co">
+					</div>
+					<p>Another Take: Set within a year after the events of Batman Begins, Batman, Lieutenant James Gordon, and new district attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City until a mysterious and sadistic criminal mastermind known only as the Joker appears in Gotham, creating a new wave of chaos. Batman's struggle against the Joker becomes deeply personal, forcing him to "confront everything he believes" and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent and Rachel Dawes.</p>
+				</div> <!-- End of Section 1 -->
+
+				<div class="section">
+					<h3>Reviews</h3>
+
+					<p>“Batman” isn’t a comic book anymore. Christopher Nolan’s “The Dark Knight” is a haunted film that leaps beyond its origins and becomes an engrossing tragedy. It creates characters we come to care about. That’s because of the performances, because of the direction, because of the writing, and because of the superlative technical quality of the entire production. This film, and to a lesser degree “Iron Man,” redefine the possibilities of the “comic-book movie.”</p>
+
+					
+					<div class="content-photo-container">
+						<img src="imgs/JokerPhoto.jpg", alt="JokerContentPhoto">
+					</div>
+					<p>“The Dark Knight” is not a simplistic tale of good and evil. Batman is good, yes, The Joker is evil, yes. But Batman poses a more complex puzzle than usual: The citizens of Gotham City are in an uproar, calling him a vigilante and blaming him for the deaths of policemen and others. And the Joker is more than a villain. He’s a Mephistopheles whose actions are fiendishly designed to pose moral dilemmas for his enemies.</p>
+				</div> <!-- End of Section 2 -->
+
+				<div class="section">
+					<h3>Theme: The Terrible Logic of Human Nature</h3>
+
+					<p>What do people do when they are put in the worst of situations? What would you do if you were given the ultimate power over someone else? The movie touches upon these questions of human nature, but they are perhaps its least developed. We see this theme pop up several times, most notably in two separate instances. Firstly, it’s evident when Batman breaks into Wayne enterprises and gives Lucius Fox fee reign of the cell phone hackery he has perpetrated upon all of Gotham. Fox demurs, believing that one person should not have this power. People are so easily corrupted that even an initial desire to do good can ultimately lead to evil, the film seems to be saying. This is further confirmed as the entire video interface comes to a fiery end, in a spectacular Batman-programmed self-destruction.</p>
+
+					<div class="content-photo-container">
+						<img src="imgs/BatmanLogo.jpg", alt="BatmanLogo">
+					</div>
+					<p>We also see it at the very end, when two separate sets of people are given the ability to destroy each other. Given the lead-up to the film’s climactic action scene, it’s a little bit strange that the boat-bomb storyline ends in the way that it does: With both criminals and everyday citizens concluding that they won’t take another’s life just to preserve their own. Throughout the whole movie, Nolan seems to be trying to tell us we are all easily subject to the temptations of the dark side, but the rest of the movie is already so relentlessly dark that perhaps this ending was more palatable to general audiences.Humans can’t handle power responsibly. But maybe, in our shared humanity, there is still hope for compassion. </p>
+				</div>
+
+			</div>
+			<div class="clearfloat"></div>
+		</div> <!-- End of container holding columns -->
+
+		<div id="footer">
+			Developed by Sandeep Suresh for ITP 303 &copy; 2017
+		</div> <!-- #footer -->
+
+	</div>
+		
 </body>
 </html>
