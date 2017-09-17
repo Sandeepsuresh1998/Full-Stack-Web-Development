@@ -56,10 +56,35 @@
 	</div> <!-- .container -->
 
 	<script>
-		var numberButtons = document.querySelectorAll('.col-3 btn btn-lg btn-outline-dark'); //Gets all the buttons you can press
-		for(int i = 0; i < numberButtons.length; i++) {
+		//Global variables needed
+		var off = true;
+
+		//Function to turn the calcultor on and off.
+		function toggleOnOff() {	
+			if (off) { //Turning the calculator on
+				document.querySelector('#display').value = "0";
+				off = false;
+			} else { //Turning the calculator off
+				document.querySelector('#display').value = "OFF";
+				off = true;
+			}
+
+		}
+
+
+		var numberButtons = document.querySelectorAll('.col-3'); 
+		for(var i = 0; i < numberButtons.length; i++) {
 			numberButtons[i].onclick = function() {
-				console.log("Button clicked");			}
+				console.log(this.value);			
+			}
+		}
+
+		//Getting the spacebar to work with the calculator
+		document.onkeypress = function(e) {
+			if(e.keyCode == 32) { //If the spacebar was hit
+				console.log("Space bar pressed");
+				toggleOnOff();
+			}
 		}
 
 	</script>
