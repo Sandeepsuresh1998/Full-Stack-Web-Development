@@ -58,6 +58,9 @@
 	<script>
 		//Global variables needed
 		var off = true;
+		var firstValue = 0;
+		var secondValue = 0;
+		var operation = '';
 
 		//Function to turn the calcultor on and off.
 		function toggleOnOff() {	
@@ -65,10 +68,20 @@
 				document.querySelector('#display').value = "0";
 				off = false;
 			} else { //Turning the calculator off
+
+				//Reseting the values for the first and second values.
+				resetValues();
+				//Upload 
 				document.querySelector('#display').value = "OFF";
 				off = true;
 			}
 
+		}
+
+		function resetValues() {
+			firstValue = 0;
+			secondValue = 0;
+			operation = '';
 		}
 
 		//Function to be called when the AC button gets clicked.
@@ -76,9 +89,18 @@
 			if (off) {
 				return;
 			} else {
-				//If we had variables for other values then we would also need to reset them.
+				//Reseting all values and reseting the display
+				resetValues();
+
+				//Setting the display back to normal;
 				document.querySelector('#display').value = '0';
 			}
+		}
+
+		//Displaying the error message for the calculator.
+		function showErrorMessage() {
+			resetValues(); //If something went wrong then we should reset everything.
+			document.querySelector('#display').value = 'ERROR';
 		}
 
 
@@ -97,17 +119,43 @@
 		}
 
 		/* AC Button Functionality */
-
 		document.querySelector('#reset-button').onclick = function() {
 			resetDisplay();
 		}
+
 
 		/* Outcomes from pressing each buttons */
 		var functionalButtons = document.querySelectorAll('.col-3.btn.btn-lg.btn-outline-dark');
 
 		for(var i = 0; i < functionalButtons.length; i++) {
 			functionalButtons[i].onclick = function() {
-				console.log("Button is clicked");
+
+				//First check if the calculator is off
+				if (off) {
+					return;
+				}
+
+				//Now that we know it is on...
+				var buttonClickedValue = this.innerHTML; 
+
+				//Check if the value is not a number or is
+				if(isNaN(buttonClickedValue)) {
+					//Set operations
+					if (buttonClickedValue != '.' || buttonClickedValue == '=') {
+						operation = buttonClickedValue;
+					} else {
+						//It is a decimal that was clicked.
+					}
+				} else {
+				    var currentDisplay = document.querySelector('#display').value;
+					if(currentDisplay == 0) { //If there is nothing already clicked.
+						firstValue = buttonClickedValue;
+						document.querySelector('#display').value = buttonClickedValue;
+					} else {
+						document.querySelector('#display').value = currentDisplay + buttonClickedValue;
+					}
+
+				}
 			}
 		}
 
