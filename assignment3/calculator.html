@@ -24,8 +24,8 @@
 					<input type="text" id="display" class="col-12 text-right form-control" value="OFF" disabled>
 				</div> <!-- .row -->
 				<div class="row">
-					<button class="col-6 btn btn-lg btn-outline-dark">ON / OFF</button>
-					<button class="col-6 btn btn-lg btn-outline-dark">AC</button>
+					<button class="col-6 btn btn-lg btn-outline-dark" id='power-button'>ON / OFF</button>
+					<button class="col-6 btn btn-lg btn-outline-dark" id='reset-button'>AC</button>
 				</div> <!-- .row -->
 				<div class="row">
 					<button class="col-3 btn btn-lg btn-outline-dark">7</button>
@@ -71,19 +71,43 @@
 
 		}
 
-
-		var numberButtons = document.querySelectorAll('.col-3'); 
-		for(var i = 0; i < numberButtons.length; i++) {
-			numberButtons[i].onclick = function() {
-				console.log(this.value);			
+		//Function to be called when the AC button gets clicked.
+		function resetDisplay() {
+			if (off) {
+				return;
+			} else {
+				//If we had variables for other values then we would also need to reset them.
+				document.querySelector('#display').value = '0';
 			}
 		}
+
+
+		/* On and Off Functionality */
 
 		//Getting the spacebar to work with the calculator
 		document.onkeypress = function(e) {
 			if(e.keyCode == 32) { //If the spacebar was hit
-				console.log("Space bar pressed");
 				toggleOnOff();
+			}
+		}
+
+		//Getting it to work with the button on the calculator
+		document.querySelector('#power-button').onclick = function() {
+			toggleOnOff(); 
+		}
+
+		/* AC Button Functionality */
+
+		document.querySelector('#reset-button').onclick = function() {
+			resetDisplay();
+		}
+
+		/* Outcomes from pressing each buttons */
+		var functionalButtons = document.querySelectorAll('.col-3.btn.btn-lg.btn-outline-dark');
+
+		for(var i = 0; i < functionalButtons.length; i++) {
+			functionalButtons[i].onclick = function() {
+				console.log("Button is clicked");
 			}
 		}
 
