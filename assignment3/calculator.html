@@ -61,6 +61,7 @@
 		var firstValue = 0;
 		var secondValue = 0;
 		var operation = '';
+		var displayResetNeeded = false;
 
 		//Function to turn the calcultor on and off.
 		function toggleOnOff() {	
@@ -129,7 +130,7 @@
 
 		for(var i = 0; i < functionalButtons.length; i++) {
 			functionalButtons[i].onclick = function() {
-
+				var currentDisplay = document.querySelector('#display').value;
 				//First check if the calculator is off
 				if (off) {
 					return;
@@ -140,20 +141,42 @@
 
 				//Check if the value is not a number or is
 				if(isNaN(buttonClickedValue)) {
-					//Set operations
-					if (buttonClickedValue != '.' || buttonClickedValue == '=') {
-						operation = buttonClickedValue;
-					} else {
-						//It is a decimal that was clicked.
+					/* Everytime an operation other than a decimal is clicked 
+					   there will be need to be an update to the display either
+					   on click or by the next one. 
+					*/
+
+					//Decimal
+					if(buttonClickedValue == '.') {
+						//First check whether there is a decimal already in the display.
+						if (currentDisplay.indexOf('.') != -1) {
+							showErrorMessage();
+							return;
+						} else {
+							//Add the decimal to the display
+							document.querySelector('#display').value = currentDisplay + buttonClickedValue;
+						}
 					}
+
 				} else {
-				    var currentDisplay = document.querySelector('#display').value;
-					if(currentDisplay == 0) { //If there is nothing already clicked.
-						firstValue = buttonClickedValue;
+
+				    //Setting the display when a button is clicked.
+					if(currentDisplay == '0') { //If there is nothing already clicked.
 						document.querySelector('#display').value = buttonClickedValue;
 					} else {
 						document.querySelector('#display').value = currentDisplay + buttonClickedValue;
 					}
+
+					/* Now that the display is set, we can set the variable values. */
+					if(operation = '') {
+						//If the operation is not set then, we must assign the value to first value 
+						firstValue = document.querySelector('#display').value;
+					} else {
+
+					}
+
+
+
 
 				}
 			}
