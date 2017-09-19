@@ -61,7 +61,9 @@
 		var firstValue = 0;
 		var secondValue = 0;
 		var operation = '';
+		var firstValueSet = false;
 		var displayResetNeeded = false;
+		var result = 0;
 
 		//Function to turn the calcultor on and off.
 		function toggleOnOff() {	
@@ -83,6 +85,8 @@
 			firstValue = 0;
 			secondValue = 0;
 			operation = '';
+			displayResetNeeded = false;
+			firstValueSet = false;
 		}
 
 		//Function to be called when the AC button gets clicked.
@@ -104,6 +108,29 @@
 			document.querySelector('#display').value = 'ERROR';
 		}
 
+		function calculateResult() {
+			switch(operation) {
+				case '+':
+					result = firstValue + secondValue;
+					break;
+				case '-':
+					result = firstValue - secondValue;
+					console.log('Minus being called');
+					break;
+				case 'x': 
+					result = firstValue * secondValue;
+					break;
+				case '/':
+					result = firstValue / secondValue;
+					break;
+			}
+			document.querySelector('#display').value = result;
+			displayResetNeeded = true; //After the calculation is displayed we will need to reset the result;
+			resetValues();
+			firstValue = result;
+			secondValue = 0;
+
+		}
 
 		/* On and Off Functionality */
 
@@ -150,34 +177,53 @@
 					if(buttonClickedValue == '.') {
 						//First check whether there is a decimal already in the display.
 						if (currentDisplay.indexOf('.') != -1) {
-							showErrorMessage();
+							showErrorMessage(); //I could comment this out and just have it do nothing. 
 							return;
 						} else {
 							//Add the decimal to the display
 							document.querySelector('#display').value = currentDisplay + buttonClickedValue;
 						}
+					} else if(buttonClickedValue == '=') {
+						//Go through the different cases for the different operations clicked.
+						console.log('Equal is getting hit');
+						calculateResult();
+						//Call method to calculate result.
+
+					} else {
+						firstValueSet = true; //Once an operation is clicked, first value would be final.
+						firstValue = document.querySelector('#display').value; //Set the first value to whatever is on display
+						operation = buttonClickedValue; //Set the operation to whatever it was.
+						displayResetNeeded = true;
 					}
 
-				} else {
-
-				    //Setting the display when a button is clicked.
-					if(currentDisplay == '0') { //If there is nothing already clicked.
+				} else { //The button clicked was a number
+					if(displayResetNeeded) {
+						displayResetNeeded = false;
 						document.querySelector('#display').value = buttonClickedValue;
 					} else {
-						document.querySelector('#display').value = currentDisplay + buttonClickedValue;
+						//Setting the display when a button is clicked.
+						if(currentDisplay == '0') { //If there is nothing on the display yet
+							document.querySelector('#display').value = buttonClickedValue;
+						} else {
+							document.querySelector('#display').value = currentDisplay + buttonClickedValue;
+						}
 					}
 
-					/* Now that the display is set, we can set the variable values. */
-					if(operation = '') {
-						//If the operation is not set then, we must assign the value to first value 
-						firstValue = document.querySelector('#display').value;
+					//At this point display is already set.
+					if(firstValueSet) {
+						if(operation != '') {
+							secondValue = document.querySelector('#display').value;
+						} else {
+							// This is the case for when after a calculation the operation is reset 
+							// but the firstValue is also set but ready to change. If the user clicks
+							// on a number then, we would have to change the firstvalue and conclude
+							// that it is not set.
+							firstValueSet = false;
+							firstValue = document.querySelector('#display').value
+						}
 					} else {
-
+						firstValue = document.querySelector('#display').value
 					}
-
-
-
-
 				}
 			}
 		}
