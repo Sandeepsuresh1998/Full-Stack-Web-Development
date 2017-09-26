@@ -58,15 +58,57 @@
 		}
 
 
-		//This is the check for rule 3. Special characters.
-		document.querySelector('#pass-input').onchange = function(){
-			var str = document.querySelector('#pass-input').value;
-			if(str.indexOf('@') == -1 && str.indexOf('#') == -1 ) {
-				failRule('#rule3');
+
+		document.querySelector('#pass-input').oninput = function(){
+			// This is the check for rule 1. Making sure it is not empty.
+			var str = document.querySelector('#pass-input').value
+			var emptyRegExp = /(.+$)/;
+			if(emptyRegExp.test(str)) {
+				passRule('#rule1');
 			} else {
-				passRule('#rule3');
+				failRule('#rule1');
 			}
+
+			//This is the check for rule 2. Making sure there are at least 5 characters.
+			var str = document.querySelector('#pass-input').value
+			var fiveCharRegExp = /.{5,}$/;
+			if(fiveCharRegExp.test(str)) {
+				passRule('#rule2');
+			} else {
+				failRule('#rule2');
+			}
+			
+			//This is the check for rule 3. Special characters.
+			var str = document.querySelector('#pass-input').value
+			var specialCharRegExp = /(#|@)/g;
+			if(specialCharRegExp.test(str)) {
+				passRule('#rule3');
+			} else {
+				failRule('#rule3');
+			}
+
+			//This is the check for rule 4. Upper and lowercase.
+			var upperRegExp = (/[ABCDEFGHIJKLMNOPQRSTUVWXYZ]{1,}/g);
+			var lowerRegExp = (/[abcdefghijklmnopqrstuvwxyz]{1,}/g);
+
+			if(upperRegExp.test(str) && lowerRegExp.test(str)){
+				passRule('#rule4');
+			} else {
+				failRule('#rule4');
+			}
+
+			//This is the check for rule 5. "Pass" check.
+			var str = document.querySelector('#pass-input').value.toLowerCase();
+			var passCharRegExp = /(pass)/g;
+			if(passCharRegExp.test(str)) {
+				failRule('#rule5');
+			} else {
+				passRule('#rule5');
+			}
+
 		}
+
+		
 	</script>
 
 </body>
