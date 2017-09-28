@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>iTunes AJAX | Lab 5</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+
+	<style>
+	.table th, .table td {
+		text-align: center;
+		vertical-align: middle;
+	}
+</style>
+</head>
+<body>
+
+	<div class="container-fluid">
+
+		<div class="row">
+			<h1 class="col-12 mt-4">iTunes JSON API with AJAX</h1>
+		</div> <!-- .row -->
+
+		<div class="row">
+
+			<form action="" method="" class="col-12" id="search-form">
+				<div class="form-row">
+
+					<div class="col-12 mt-4 col-sm-6 col-lg-4">
+						<label for="search-id" class="sr-only">Search:</label>
+						<input type="text" name="" class="form-control" id="search-id" placeholder="Search...">
+					</div>
+
+					<div class="col-12 mt-4 col-sm-4 col-md-3 col-lg-2">
+						<label for="limit-id" class="sr-only">Number of results:</label>
+						<select name="" class="form-control" id="limit-id">
+							<option value="5">5 results</option>
+							<option value="10">10 results</option>
+							<option value="25">25 results</option>
+							<option value="50">50 results</option>
+							<option value="100">100 results</option>
+						</select>
+					</div>
+
+					<div class="col-12 mt-4 col-sm-auto">
+						<button type="submit" class="btn btn-primary btn-block">Search</button>
+					</div>
+
+				</div> <!-- .form-row -->
+			</form>
+
+		</div> <!-- .row -->
+
+		<div class="row">
+
+			<div class="col-12 mt-4">
+				Showing <span id="num-results" class="font-weight-bold">1</span> result(s).
+			</div>
+
+			<table class="table table-responsive table-striped col-12 mt-3">
+				<thead>
+					<tr>
+						<th>Cover</th>
+						<th>Artist</th>
+						<th>Track</th>
+						<th>Album</th>
+						<th>Preview</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr>
+						<td><img src="http://is2.mzstatic.com/image/thumb/Music/v4/40/d0/29/40d029b5-4c32-53d2-69d1-ea04a513c345/source/100x100bb.jpg"></td>
+						<td>The Beatles</td>
+						<td>Here Comes the Sun</td>
+						<td>Abbey Road</td>
+						<td><audio src="https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/AudioPreview71/v4/46/48/7d/46487d90-d40c-7c47-7285-5edbfd0fd2c0/mzaf_5516723347634890825.plus.aac.p.m4a" controls></audio></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div> <!-- .row -->
+
+	</div> <!-- .container-fluid -->
+
+	<script>
+
+		// iTunes Endpoint: https://itunes.apple.com/search
+
+		var iTunesSearch = "https://itunes.apple.com/search";
+
+		function myCallback(results){
+			var tbody = document.querySelector('tbody');
+
+			// Update the search results to display proper results
+			while( tbody.hasChildNodes() ){
+				tbody.removeChild( tbody.lastChild );
+			}
+
+			// Updating the result count.
+			document.querySelector('#num-results').innerHTML = results.resultCount;
+
+			// Display the results.
+			for (var i = 0; i < results.results.length; i++) {
+				// Create <tr> tag.
+				var row = document.createElement('tr');
+				// Create <td> tags, one for each data.
+				var cellCover = document.createElement('td');
+				var cellArtist = document.createElement('td');
+				var cellTrack = document.createElement('td');
+				var cellAlbum = document.createElement('td');
+				var cellPreview = document.createElement('td');
+				// Create <img> tag.
+				var img = document.createElement('img');
+				// Create <audio> tag.
+				var audio = document.createElement('audio');
+
+				// Set attributes for <img> and <audio> tags.
+				img.src = results.results[i].artworkUrl100;
+				audio.src = results.results[i].previewUrl;
+				audio.controls = true;
+
+				// Add <img> tag to the first <td> tag.
+				cellCover.appendChild(img);
+
+				// Add text to other <td> tags.
+				cellArtist.innerHTML = results.results[i].artistName;
+				cellTrack.innerHTML = results.results[i].trackName;
+				cellAlbum.innerHTML = results.results[i].collectionName;
+
+				// Add <audio> tag to the last <td> tag.
+				cellPreview.appendChild(audio);
+
+				// Add cells to the row.
+				row.appendChild(cellCover);
+				row.appendChild(cellArtist);
+				row.appendChild(cellTrack);
+				row.appendChild(cellAlbum);
+				row.appendChild(cellPreview);
+
+				// Add <tr> to the table.
+				document.querySelector('tbody').appendChild(row);
+			}
+		}
+
+		document.querySelector('#search-form').onsubmit = function() {
+			var searchTerm = document.querySelector('#search-id').value.trim();
+
+			var limit = document.querySelector('#limit-id').value; //Using the correct # of results
+
+			var url = iTunesSearch + "?term=" + searchTerm + "&limit=" + limit; //Updating url
+
+			ajax(url, myCallback);
+
+			return false;
+		}
+
+		function ajax(url, callback) {
+		 	var xhr = new XMLHttpRequest();
+		 	// .open(Method, Endpoint, Async (T/F))
+		 	xhr.open('GET', url, true);
+
+		 	xhr.onreadystatechange = function() {
+		 		if (xhr.readyState == XMLHttpRequest.DONE) {
+		 			// Request is completed
+		 			if (xhr.status = 200) {
+		 				// Request was successful
+		 				// JSON.parse() - converts string to JSON
+		 				callback(JSON.parse(xhr.responseText));
+		 			} else {
+		 				// Error
+		 				alert('AJAX Error.');
+		 				console.log(xhr.status);
+		 			}
+		 		}
+		 	}
+
+		 	xhr.send();
+		}
+
+
+
+	</script>
+
+</body>
+</html>
