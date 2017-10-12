@@ -1,3 +1,47 @@
+-- Creating a view for the football schedule
+CREATE VIEW football_schedule AS
+SELECT days.day_name, date, table1.team_name AS home_teams, table2.team_name AS away_teams, venues.venue_name
+FROM football_schedule_usc
+JOIN days
+	ON football_schedule_usc.day_id = days.day_id
+JOIN teams AS table1
+	ON football_schedule_usc.home_team_id = table1.team_id
+JOIN teams AS table2
+	ON football_schedule_usc.home_team_id = table2.team_id
+JOIN venues
+	ON football_schedule_usc.venue_id = venues.venue_id;
+    
+-- Adding the two games below
+-- First we have to  add Folsom Field to the foreign keys
+INSERT INTO sureshsa_football_schedule_db.venues (venue_id, venue_name) 
+VALUES ('10', 'Folsom Field');
+
+-- First Game
+INSERT INTO football_schedule_usc (game_id, day_id, date, home_team_id, away_team_id, venue_id)
+VALUES (20, 6,'2017-11-18', 7, 4,10);
+
+-- Second Game
+INSERT INTO football_schedule_usc (game_id, day_id, date, home_team_id, away_team_id, venue_id)
+VALUES(21, 6, '2017-11-18', 9, 6, 8);
+
+-- Updating a game
+UPDATE football_schedule_usc
+SET date = '2017-11-11', away_team_id = 1
+WHERE game_id = 20;
+
+-- Deleting a Game
+DELETE FROM football_schedule_usc
+WHERE game_id = 21;
+
+-- Displaying Venues and # of times each Venue is used
+SELECT football_schedule_usc.venue_id, venues.venue_name, COUNT(*) AS game_count
+FROM football_schedule_usc
+	JOIN venues
+		ON football_schedule_usc.venue_id = venues.venue_id
+GROUP BY venues.venue_id;
+
+-- Part 2
+
 -- Creating the view for the dramas
 CREATE VIEW dramas AS
 	SELECT *

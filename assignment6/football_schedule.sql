@@ -1,3 +1,4 @@
+
 SELECT date, venues.venue_name
 FROM football_schedule_usc
 JOIN venues
