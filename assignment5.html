@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sandeep Movie DB</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<style>
+		#main-container{
+			margin: 20px; 
+		}
+		#movie-search {
+			width: 400px;
+		}
+		.current-results{
+			margin: 10px;
+		}
+		.movie-result {
+			float: left;
+			text-align: center;
+			width: 200px;
+			height: 400px;
+			margin: auto;
+		}
+		.poster-for-movie {
+			position: relative;
+			width: 180px;
+			background-color: black;
+		}
+		.poster-for-movie img{
+			width: 180px; /*Make sure the image fits the container size*/
+		}
+		.movie-description {
+			font-size: 14px;
+			width: 170px;
+			margin-left: 5px;
+			margin-right: 5px;
+			text-align: center;
+		}
+		.movie-rating {
+			width: 170px;
+			margin-left: 5px;
+			margin-right: 5px;
+			text-align: center;
+		}
+		.hover-info {
+			/*Make the hover info at the top of the image*/
+			position: absolute;
+			margin: auto;
+			top: 0px;
+			text-align: center;
+			color: #FFF;
+			visibility: hidden;
+			width: 150px;
+		}
+
+		.movie-result:hover .hover-info {
+			visibility: visible;
+		}
+
+		.movie-result:hover img {
+			opacity: 0.6;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div id='main-container'>
+
+		<div class="container-fluid">
+
+		<div class="row">
+			<h1 class="col-12 mt-4">Sandeep's Movie Database</h1>
+		</div> <!-- .row -->
+
+		<div class="row">
+
+			<form action="" method="" class="col-12" id="search-form">
+				<div class="form-row">
+
+					<div class="col-12 mt-4 col-sm-6 col-lg-4">
+						<label for="search-id" class="sr-only">Search:</label>
+						<input type="text" name="" class="form-control" id="search-id" placeholder="Search...">
+					</div> 
+
+					<div class="col-12 mt-4 col-sm-auto">
+						<button type="submit" class="btn btn-primary btn-block">Search</button>
+					</div>
+
+				</div> <!-- .form-row -->
+			</form>
+
+			<div class="col-12 mt-4">
+				Showing <span id="num-results-shown" class="font-weight-bold">0</span> of <span id="num-results-total" class="font-weight-bold">0</span> result(s).
+			</div> <!-- Number of Results Tag -->
+
+			<div class="current-results"></div>
+
+
+
+		</div> <!-- .row -->
+		
+
+	</div> <!-- Main Container -->
+	
+	<script>
+
+		var apiCurrentlyPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing";
+		var apiMovieSearchUrl = "https://api.themoviedb.org/3/search/movie";
+		var apiKey = "fb67ee2b6189b7a21b574a5bad564f87";
+		var imgBasePath = "https://image.tmdb.org/t/p/w185";
+
+		apiCurrentlyPlayingUrl = apiCurrentlyPlayingUrl + "?api_key=" + apiKey + "&language=en-US&page=1";
+		ajax(apiCurrentlyPlayingUrl, showResults);
+
+		function showResults(results) {
+			var cResults = document.querySelector('.current-results');
+
+			//Remove all current results
+			while(cResults.hasChildNodes()) {
+				cResults.removeChild(cResults.lastChild);
+			}
+
+			//Show the number of results 
+			document.querySelector('#num-results-shown').innerHTML = results.results.length;
+			document.querySelector('#num-results-total').innerHTML = results.total_results;
+
+			//Populating the elements
+			for (var i = 0; i < results.results.length; i++) {
+				var movie_result = document.createElement('div');
+				movie_result.className = 'movie-result'; //Creating the class to hold results
+
+				//Create a div holding the posters displayed
+				var poster_div = document.createElement('div');
+				poster_div.className = 'poster-for-movie';
+
+				//Creating an image for the poster
+				var poster_content = document.createElement('img');
+
+				//Assign the poster_image to the actual image
+				poster_content.src = imgBasePath + "/" + results.results[i].poster_path;
+
+				//Assign the title
+				poster_content.alt = results.results[i].title;
+
+				//Add it to the div
+				poster_div.appendChild(poster_content)
+
+				//Creating a div for the display of the title.
+				var movie_title = document.createElement('div');
+				movie_title.className = 'movie-title';
+				movie_title.innerHTML = results.results[i].title;
+
+				//Creating a div for the display of the release date.
+				var movie_release_date = document.createElement('div');
+				movie_release_date.className = 'movie-release-date';
+				movie_release_date.innerHTML = results.results[i].release_date;
+
+				// Information to be displayed when user hovers
+				var hover_info = document.createElement('div');
+				hover_info.className = 'hover-info';
+
+				//Movie Description
+				var movie_description = document.createElement('div');
+				movie_description.className = 'movie-description';
+				var movie_description_text = results.results[i].overview;
+
+				//Limiting the Movie Description
+				if (movie_description_text.length > 200) {
+					movie_description_text = movie_description_text.substring(0, 197).trim();
+					movie_description_text += "...";
+				}
+				//Set the innerHTML to the trimmed text
+				movie_description.innerHTML = movie_description_text;
+				
+				//Movie Ratings
+				var movie_rating = document.createElement('div');
+				movie_rating.className = 'movie-rating';
+				movie_rating.innerHTML = results.results[i].vote_average + '&#9734';
+
+				//Put all these elements in the hover div
+				hover_info.appendChild(movie_rating); //Rating should be on top
+				hover_info.appendChild(movie_description);
+				
+
+				//Put the hover stuff in the same place as the poster
+				poster_div.appendChild(hover_info);
+
+				movie_result.appendChild(poster_div);
+				movie_result.appendChild(movie_release_date);
+				movie_result.appendChild(movie_title);
+				document.querySelector('.current-results').appendChild(movie_result);
+			}
+		}
+
+		document.querySelector('#search-form').onsubmit = function() {
+			var searchString = document.querySelector('#search-id').value.trim();
+
+			var url = apiMovieSearchUrl + "?api_key=" + apiKey + "&query=" + searchString + "&page=1";
+
+			ajax(url, showResults);
+
+			return false;
+		}
+
+		function ajax(endpointUrl, returnFunction){
+			var xhr = new XMLHttpRequest();
+			// .open( Method, Endpoint, Async (T/F) )
+			xhr.open('GET', endpointUrl, true);
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState == XMLHttpRequest.DONE) {
+					// Request is completed
+					if (xhr.status == 200) {
+						// Request was successful
+						// JSON.parse() – converts string to JSON.
+						returnFunction( JSON.parse(xhr.responseText) );
+					} else {
+						// Error
+						alert('AJAX Error.');
+						console.log(xhr.status);
+					}
+				}
+			}
+			xhr.send();
+		}
+	</script>
+	
+</body>
+</html>
