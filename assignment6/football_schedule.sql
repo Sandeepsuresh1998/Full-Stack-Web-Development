@@ -21,4 +21,3 @@ JOIN teams AS table2
 	ON football_schedule_usc.home_team_id = table2.team_id
 JOIN venues
 	ON football_schedule_usc.venue_id = venues.venue_id;
-    
