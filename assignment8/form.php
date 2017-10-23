@@ -24,7 +24,43 @@
 	</div> <!-- .container -->
 
 	<div class="container">
+		<?php
 
+			$host = "303.itpwebdev.com";
+			$user = "sureshsa_db_user";
+			$pass = "Suresh98?";
+			$db = "sureshsa_dvd_db";
+
+			// 1. Establish DB Connection.
+			$mysqli = new mysqli($host, $user, $pass, $db);
+
+			if ($mysqli->connect_errno) {
+				// Connection Error
+				echo $mysqli->connect_error;
+			} else {
+				//Successful connection
+
+				//All SQL statements for the different categories.
+				$sql_genres = "SELECT * FROM genres;";
+				$sql_ratings = "SELECT * FROM ratings;";
+				$sql_labels = "SELECT * FROM labels;";
+				$sql_formats = "SELECT * FROM formats;";
+				$sql_sounds = "SELECT * FROM sounds;";
+
+				//All the php to get results for each option bar.
+				$results_genres = $mysqli->query($sql_genres);
+				$results_ratings = $mysqli->query($sql_ratings);
+				$results_labels = $mysqli->query($sql_labels);
+				$results_formats = $mysqli->query($sql_formats);
+				$results_sounds = $mysqli->query($sql_sounds);
+
+				//Making sure there is no error with the queries
+				if(!$results_genres || !$results_ratings || !$results_labels || !$results_formats || !$results_sounds) {
+					echo "SQL Error";
+					exit();
+				} 					
+			}
+		?>
 		
 				<form action="search.php" method="GET">
 
@@ -39,7 +75,19 @@
 						<label for="genre-id" class="col-sm-3 col-form-label text-sm-right">Genre:</label>
 						<div class="col-sm-9">
 							<select name="genre" id="genre-id" class="form-control">
-								<option value="" selected>-- All --</option>	
+								<option value="" selected>-- All --</option>
+								<!-- Dynamically Allocating the options -->	
+								<?php 
+									while ($row = $results_genres->fetch_assoc()) :
+								?>
+									<option value="<?php echo $row['genre_id']; ?>" id="<?php echo $row['genre_id']; ?>">
+										<?php echo $row['genre'] ?>
+									</option>
+
+								<?php
+									endwhile;
+								?>
+
 							</select>
 						</div>
 					</div> <!-- .form-group -->
@@ -48,7 +96,18 @@
 						<label for="rating-id" class="col-sm-3 col-form-label text-sm-right">Rating:</label>
 						<div class="col-sm-9">
 							<select name="rating" id="rating-id" class="form-control">
-								<option value="" selected>-- All --</option>	
+								<option value="" selected>-- All --</option>
+								<!-- Dynamically Allocating the options -->
+								<?php 
+									while ($row = $results_ratings->fetch_assoc()) :
+								?>
+									<option value="<?php echo $row['rating_id']; ?>" id="<?php echo $row['rating_id']; ?>">
+										<?php echo $row['rating'] ?>
+									</option>
+
+								<?php
+									endwhile;
+								?>	
 							</select>
 						</div>
 					</div> <!-- .form-group -->
@@ -58,6 +117,17 @@
 						<div class="col-sm-9">
 							<select name="label" id="label-id" class="form-control">
 								<option value="" selected>-- All --</option>
+								<!-- Dynamically Allocating the options -->
+								<?php 
+									while ($row = $results_labels->fetch_assoc()) :
+								?>
+									<option value="<?php echo $row['label_id']; ?>" id="<?php echo $row['label_id']; ?>">
+										<?php echo $row['label'] ?>
+									</option>
+
+								<?php
+									endwhile;
+								?>
 							</select>
 						</div>
 					</div> <!-- .form-group -->
@@ -67,6 +137,17 @@
 						<div class="col-sm-9">
 							<select name="format" id="format-id" class="form-control">
 								<option value="" selected>-- All --</option>
+								<!-- Dynamically Allocating the options -->
+								<?php 
+									while ($row = $results_formats->fetch_assoc()) :
+								?>
+									<option value="<?php echo $row['format_id']; ?>" id="<?php echo $row['format_id']; ?>">
+										<?php echo $row['format'] ?>
+									</option>
+
+								<?php
+									endwhile;
+								?>
 							</select>
 						</div>
 					</div> <!-- .form-group -->
@@ -76,6 +157,17 @@
 						<div class="col-sm-9">
 							<select name="sound" id="sound-id" class="form-control">
 								<option value="" selected>-- All --</option>
+								<!-- Dynamically Allocating the options -->
+								<?php 
+									while ($row = $results_sounds->fetch_assoc()) :
+								?>
+									<option value="<?php echo $row['sound_id']; ?>" id="<?php echo $row['sound_id']; ?>">
+										<?php echo $row['sound'] ?>
+									</option>
+
+								<?php
+									endwhile;
+								?>
 							</select>
 						</div>
 					</div> <!-- .form-group -->
