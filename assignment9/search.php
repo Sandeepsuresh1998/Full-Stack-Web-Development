@@ -39,7 +39,7 @@
 
 					else :
 						//Connection success
-						$sql = "SELECT title AS dvd_title, release_date AS release_date, award AS Award, genres.genre AS dvd_genre, ratings.rating AS rating, labels.label AS label, formats.format AS format, sounds.sound AS sound
+						$sql = "SELECT title AS dvd_title, release_date AS release_date, award AS Award, genres.genre AS dvd_genre, ratings.rating AS rating, labels.label AS label, formats.format AS format, sounds.sound AS sound, dvd_title_id
 								FROM dvd_titles
 								JOIN genres
 									ON dvd_titles.genre_id = genres.genre_id
@@ -138,7 +138,17 @@
 							while ( $row = $results->fetch_assoc() ) :
 						?>
 							<tr>
-								<td><?php echo $row['dvd_title']; ?></td>
+								<td> <!-- In this row link the title and add edit/delete buttons -->
+									<a href="details.php?dvd_title_id=<?php echo $row['dvd_title_id']; ?>"">
+										<?php echo $row['dvd_title']; ?>
+									</a>
+
+									<div> 
+										<a href="edit.php?dvd_title_id=<?php echo $row['dvd_title_id']; ?>" class="btn btn-dark mt-2">EDIT</a>
+										<a href="delete.php?dvd_title_id=<?php echo $row['dvd_title_id']; ?>" class="btn btn-dark mt-2" onclick="return confirm('Are you sure you want to delete <?php echo $row['track_name']; ?>?');">DELETE</a>
+									</div>
+									
+								</td>
 								<td><?php echo $row['release_date']; ?></td>
 								<td><?php echo $row['Award']; ?></td>
 								<td><?php echo $row['dvd_genre']; ?></td>
