@@ -143,7 +143,7 @@
 										<?php echo $row['dvd_title']; ?>
 									</a>
 
-									<div> 
+									<div> <!-- Edit and Delete Buttons -->
 										<a href="edit.php?dvd_title_id=<?php echo $row['dvd_title_id']; ?>" class="btn btn-dark mt-2">EDIT</a>
 										<a href="delete.php?dvd_title_id=<?php echo $row['dvd_title_id']; ?>" class="btn btn-dark mt-2" onclick="return confirm('Are you sure you want to delete <?php echo $row['track_name']; ?>?');">DELETE</a>
 									</div>
