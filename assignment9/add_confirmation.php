@@ -54,11 +54,11 @@
 
 				//Setting all the not required fields to null in case user does not fill it out
 				$release_date = "null";
-				$label = "null";
-				$sound = "null";
-				$genre = "null";
-				$rating = "null";
-				$format = "null";
+				$label_id = "null";
+				$sound_id = "null";
+				$genre_id = "null";
+				$rating_id = "null";
+				$format_id = "null";
 				$award = "null"
 
 				//Release Date
@@ -97,23 +97,23 @@
 				}
 
 				
-				$sql = "INSERT INTO dvd_titles (title, release_date, genre_id, milliseconds, unit_price, album_id, composer, bytes)
+				$sql = "INSERT INTO dvd_titles (title, release_date, label_id, sound_id, genre_id, rating_id, format_id, award)
 								VALUES ('"
-					. $_POST['track_name']
+					. $_POST['title']
 					. "', " 
-					. $_POST['media_type']
+					. $release_date
 					. ", "
-					. $_POST['genre']
+					. $label_id
 					. ", "
-					. $_POST['milliseconds']
+					. $sound_id
 					. ", "
-					. $_POST['price']
+					. $genre_id
 					. ", "
-					. $album_id
+					. $rating_id
 					. ", "
-					. $composer
+					. $format_id
 					. ", " 
-					. $bytes
+					. $award
 					. ");";
 
 				// echo $sql . "<hr>";
@@ -126,7 +126,7 @@
 				else :
 					// SQL Success
 	?>
-				<div class="text-success"><span class="font-italic"><?php echo $_POST['track_name']; ?></span> was successfully added.</div>
+				<div class="text-success"><span class="font-italic"><?php echo $_POST['title']; ?></span> was successfully added.</div>
 
 	<?php
 				endif; /* SQL Error */
