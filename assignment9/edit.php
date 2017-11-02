@@ -19,7 +19,7 @@
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="index.php">Home</a></li>
 		<li class="breadcrumb-item"><a href="form.php">Search</a></li>
-		<li class="breadcrumb-item"><a href="search.php">Results</a></li>
+		<li class="breadcrumb-item"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Results</a></li>
 		<li class="breadcrumb-item active">Edit</li>
 	</ol>
 
