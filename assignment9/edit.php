@@ -241,9 +241,7 @@
 					<div class="form-group row">
 						<label for="award-id" class="col-sm-3 col-form-label text-sm-right">Award:</label>
 						<div class="col-sm-9">
-							<textarea name="award" id="award-id" class="form-control">
-								<?php echo $row_dvd['award']; ?>
-							</textarea>
+							<textarea name="award" id="award-id" class="form-control"><?php echo $row_dvd['award']; ?></textarea>
 						</div>
 					</div> <!-- .form-group -->
 
