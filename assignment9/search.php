@@ -145,7 +145,7 @@
 
 									<div> <!-- Edit and Delete Buttons -->
 										<a href="edit.php?dvd_title_id=<?php echo $row['dvd_title_id']; ?>" class="btn btn-dark mt-2">EDIT</a>
-										<a href="delete.php?dvd_title_id=<?php echo $row['dvd_title_id']; ?>" class="btn btn-dark mt-2" onclick="return confirm('Are you sure you want to delete <?php echo $row['dvd_titled']; ?>?');">DELETE</a>
+										<a href="delete.php?dvd_title_id=<?php echo $row['dvd_title_id'];?>&title=<?php echo $row['dvd_title']; ?>" class="btn btn-dark mt-2" onclick="return confirm('Are you sure you want to delete <?php echo $row['dvd_title']; ?>?');">DELETE</a>
 									</div>
 									
 								</td>

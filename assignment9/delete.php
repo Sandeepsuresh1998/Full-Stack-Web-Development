@@ -61,7 +61,7 @@
 							else : 
 								//Deleting Success
 					?>
-						<div class="text-success"><span class="font-italic"><?php echo $_POST['title']; ?></div>
+						<div class="text-success"><span class="font-italic"><?php echo $_GET['title']; ?> was deleted!</div>
 					<?php 
 								endif;
 								$mysqli->close();
