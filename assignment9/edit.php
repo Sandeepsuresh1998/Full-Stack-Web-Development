@@ -227,7 +227,7 @@
 											</option>
 									<?php else : ?>
 
-											<option value="<?php echo $row['sound_id']; ?>">
+											<option value="<?php echo $row['format_id']; ?>">
 												<?php echo $row['format'] ?>
 											</option>
 
