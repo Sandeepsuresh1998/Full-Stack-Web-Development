@@ -251,7 +251,8 @@
 						</div>
 					</div> <!-- .form-group -->
 
-					<!-- <input type="hidden" name="dvd_title_id" value="839"> -->
+					<!-- This is to pass the dvd_title_id to the update.php -->
+					<input type="hidden" name="dvd_title_id" value="<?php echo $_GET['dvd_title_id']; ?>"> 
 					
 					<div class="form-group row">
 						<div class="col-sm-3"></div>
