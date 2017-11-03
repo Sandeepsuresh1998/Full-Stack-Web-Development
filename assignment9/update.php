@@ -96,9 +96,7 @@
 									format_id = ". $format_id .",
 									award = ". $award ."
 									WHERE dvd_title_id = ".$_POST['dvd_title_id'].";";
-
-						echo $sql;
-						echo "<hr>";
+									
 						$results = $mysqli->query($sql);
 
 						if( !$results ) :
