@@ -1,0 +1,8 @@
+<h1>Reddit</h1>
+
+<p>There are {{model.data.children.length}} posts.</p>
+
+{{#each model.data.children as |post|}}
+	{{reddit-post post=post.data }}
+{{/each}}
+
