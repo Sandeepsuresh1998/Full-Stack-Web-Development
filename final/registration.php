@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Register | Trump Thoughts</title>
+	<title>Register | Trump Tweets</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 
 	<style>
@@ -91,6 +91,7 @@
 
 		document.querySelector('form').onsubmit = function(){
 
+			//Some fields are not filled in
 			if ( document.querySelector('#email-id').value.trim().length == 0
 				|| document.querySelector('#full-name-id').value.trim().length == 0
 				|| document.querySelector('#password-id').value.trim().length == 0 
