@@ -1,6 +1,6 @@
 <?php
 session_start();
-// require '../config/config.php';
+require 'config.php';
 
 // Check whether user is logged in.
 if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
@@ -57,7 +57,7 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Login | Song Database</title>
+	<title>Login | Trump Thoughts</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 
 	<style>
