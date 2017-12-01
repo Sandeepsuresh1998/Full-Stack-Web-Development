@@ -25,6 +25,30 @@
 		</div> <!-- .row -->
 	</div> <!-- .container -->
 
+
+	<?php
+		// 1. Establish DB Connection.
+		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+		if ($mysqli->connect_errno) :
+			// Connection Error
+			echo $mysqli->connect_error;
+		else :	
+			// Connection Success
+
+			//SQL Code needed to get political parties and states as options
+			$sql_parties = "SELECT * FROM political_parties";
+			$sql_states	= "SELECT * FROM States";
+
+			$results_parties = $mysqli->query($sql_parties);
+			$results_states = $mysqli->query($sql_states);
+
+			if (!$results_parties || !$results_states) :
+				// Some kind of SQL Error
+				echo "Something went wrong on our end! Sorry.";
+			else :
+	?>	
+
 	<div class="container">
 
 		<form action="register.php" method="POST">		
@@ -47,6 +71,48 @@
 					<input type="email" class="form-control" id="email-id" name="email">
 				</div>
 			</div> <!-- Email -->	
+
+			<div class="form-group row">
+				<label for="party-id" class="col-sm-3 col-form-label text-sm-right">Political Party: <span class="text-danger">*</span></label>
+				<div class="col-sm-9">
+					<select name="party" id="party-id" class="form-control">
+						<option value="">-- Please Select A Party --</option>
+						<?php 
+							while ($row_party = $results_parties->fetch_assoc()) :
+						?>
+								<option value="<?php echo $row['idpolitical_parties']; ?>">
+									<?php echo $row_party['name']; ?> <!-- Get the name of the party -->
+								</option>
+
+						<?php
+							endwhile;
+						?>
+
+					</select>
+				</div>
+			</div>
+
+
+			<div class="form-group row">
+				<label for="state-id" class="col-sm-3 col-form-label text-sm-right">State: <span class="text-danger">*</span></label>
+				<div class="col-sm-9">
+					<select name="state" id="state-id" class="form-control">
+						<option value="">-- Please Select A State --</option>
+						<?php 
+							while ($row_state = $results_states->fetch_assoc()) :
+						?>
+								<option value="<?php echo $row['state_id']; ?>">
+									<?php echo $row_state['name']; ?> <!-- Get the name of the state -->
+								</option>
+
+						<?php
+							endwhile;
+						?>
+
+					</select>
+				</div>
+			</div>
+
 
 			<div class="form-group row">
 				<label for="password-id" class="col-sm-3 col-form-label text-sm-right">Password: <span class="text-danger">*</span></label>
@@ -87,6 +153,13 @@
 		</form>
 
 	</div> <!-- .container -->
+
+	<?php 
+		endif;
+		$mysqli->close();
+	endif;
+
+	?>
 
 	<script>
 

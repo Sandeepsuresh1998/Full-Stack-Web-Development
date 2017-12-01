@@ -48,7 +48,7 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 
 } else {
 	// User is already logged in.
-	header('Location: ../song-db');
+	header('Location: ../song-`');
 }
 
 ?>
