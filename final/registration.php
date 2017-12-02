@@ -38,7 +38,7 @@
 
 			//SQL Code needed to get political parties and states as options
 			$sql_parties = "SELECT * FROM political_parties";
-			$sql_states	= "SELECT * FROM States";
+			$sql_states	= "SELECT * FROM states";
 
 			$results_parties = $mysqli->query($sql_parties);
 			$results_states = $mysqli->query($sql_states);
@@ -80,7 +80,7 @@
 						<?php 
 							while ($row_party = $results_parties->fetch_assoc()) :
 						?>
-								<option value="<?php echo $row['idpolitical_parties']; ?>">
+								<option value="<?php echo $row['party_id']; ?>">
 									<?php echo $row_party['name']; ?> <!-- Get the name of the party -->
 								</option>
 
