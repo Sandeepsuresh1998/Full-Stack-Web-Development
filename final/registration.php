@@ -30,6 +30,7 @@
 		// 1. Establish DB Connection.
 		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
+		//Start of SQL code. 
 		if ($mysqli->connect_errno) :
 			// Connection Error
 			echo $mysqli->connect_error;
