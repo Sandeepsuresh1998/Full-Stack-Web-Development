@@ -50,6 +50,7 @@ else :
 
 		// $mysqli->real_escape_string() escapes special characters like apostrophes.
 
+		//Get the person with this unique email
 		$sql = "SELECT * FROM users
 						WHERE email = '"
 						.$mysqli->real_escape_string($_POST['email'])
@@ -68,21 +69,27 @@ else :
 			//The results returned back a user with the given email.
 			if ($results->num_rows > 0) :
 				// Found email or full-name in the DB.
-				echo "Username or email already registered.";
+				echo "This email has already been registered.";
 			else :
 
+			//Hashing the password to store in the DB
 			$password = hash('sha256', $_POST['password']);
 
-			$sql = "INSERT INTO users (email, username, password)
+			$sql = "INSERT INTO users (name, email, password, state_id, party_id)
 							VALUES ('"
+							. $mysqli->real_escape_string($_POST['name'])
+							. "', '"
 							. $mysqli->real_escape_string($_POST['email'])
 							. "', '"
-							. $mysqli->real_escape_string($_POST['username'])
-							. "', '"
 							. $mysqli->real_escape_string($password)
-							. "');";
+							. "', "
+							. $_POST['state_id']
+							. ", "
+							. $_POST['party_id']
+							. ");";
 
-			// echo $sql;
+			echo sql;
+
 			$results = $mysqli->query($sql);
 
 			if (!$results) :
