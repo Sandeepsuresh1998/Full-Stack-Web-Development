@@ -72,51 +72,51 @@ else :
 				echo "This email has already been registered.";
 			else :
 
-			//Hashing the password to store in the DB
-			$password = hash('sha256', $_POST['password']);
+				//Hashing the password to store in the DB
+				$password = hash('sha256', $_POST['password']);
 
-			$sql = "INSERT INTO users (name, email, password, state_id, party_id)
-							VALUES ('"
-							. $mysqli->real_escape_string($_POST['name'])
-							. "', '"
-							. $mysqli->real_escape_string($_POST['email'])
-							. "', '"
-							. $mysqli->real_escape_string($password)
-							. "', "
-							. $_POST['state_id']
-							. ", "
-							. $_POST['party_id']
-							. ");";
+				$sql = "INSERT INTO users (name, email, password, state_id, party_id)
+								VALUES ('"
+								. $mysqli->real_escape_string($_POST['full-name'])
+								. "', '"
+								. $mysqli->real_escape_string($_POST['email'])
+								. "', '"
+								. $mysqli->real_escape_string($password)
+								. "', "
+								. $_POST['state']
+								. ", "
+								. $_POST['party']
+								. ");";
 
-			echo sql;
+				echo $sql;
 
-			$results = $mysqli->query($sql);
+				$results = $mysqli->query($sql);
 
-			if (!$results) :
-				echo "Something went wrong when we tried to add you to the database! Are you a virus?";
-				echo $mysqli->error;
-			else :
+				if (!$results) :
+					echo "Something went wrong when we tried to add you to the database! Are you a virus?";
+					echo $mysqli->error;
+				else :
 
-				$to = $_POST['email'];
-				$subject = "Welcome to Trump Thoughts";
-				$msg = "<h1>Hello!</h1>
-								<div>You now have an inside scoop to the consciousness of our President! Please share with your friends and family, so we as a nation can be better informed on who we are voting for in 2020!</div>";
-				$headers = "Content-Type: text/html"
-									."\r\n"
-									."From: no-reply@trump.gov";
+					$to = $_POST['email'];
+					$subject = "Welcome to Trump Thoughts";
+					$msg = "<h1>Hello!</h1>
+									<div>You now have an inside scoop to the consciousness of our President! Please share with your friends and family, so we as a nation can be better informed on who we are voting for in 2020!</div>";
+					$headers = "Content-Type: text/html"
+										."\r\n"
+										."From: no-reply@trump.gov";
 
-				mail($to, $subject, $msg, $headers);
+					mail($to, $subject, $msg, $headers);
 
 	?>
 		<div class="text-success">
 			User <?php echo $_POST['full-name']; ?> was successfully registered.
 		</div>
 	<?php
-			endif; /* ELSE for INSERT SQL Error */
-		endif; /* ELSE for duplicate email/full-name error. */
-		$mysqli->close();
-	endif; /* ELSE for DB Connection Error */
-
+				endif; /* ELSE for inserting user into DB */
+			endif; /* ELSE for duplicate email/full-name error. */
+			$mysqli->close();
+		endif; /* ELSE for DB Connection Error */
+	endif;
 endif; /* ELSE for empty input validation */
 ?>
 

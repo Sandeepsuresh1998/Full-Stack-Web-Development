@@ -3,5 +3,5 @@
 	define('DB_USER', 'sureshsa_db_user');
 	define('DB_PASS', 'Suresh98?');
 	define('DB_NAME', 'sureshsa_trump_final_db');
-	define('USER_DB_NAME', 'sureshsa_trump_db');
+	define('USER_DB_NAME', 'sureshsa_trump_final_db');
 ?>

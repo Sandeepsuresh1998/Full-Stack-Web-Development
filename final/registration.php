@@ -81,7 +81,7 @@
 						<?php 
 							while ($row_party = $results_parties->fetch_assoc()) :
 						?>
-								<option value="<?php echo $row['party_id']; ?>">
+								<option value="<?php echo $row_party['party_id']; ?>">
 									<?php echo $row_party['name']; ?> <!-- Get the name of the party -->
 								</option>
 
@@ -102,7 +102,7 @@
 						<?php 
 							while ($row_state = $results_states->fetch_assoc()) :
 						?>
-								<option value="<?php echo $row['state_id']; ?>">
+								<option value="<?php echo $row_state['state_id']; ?>">
 									<?php echo $row_state['name']; ?> <!-- Get the name of the state -->
 								</option>
 
