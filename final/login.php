@@ -4,10 +4,10 @@ require 'config.php';
 
 // Check whether user is logged in.
 if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
+	
 	// User is not logged in.
-
 	$login_error = false;
-
+	
 	// Check whether form was submitted
 	if ( isset($_POST['email']) && isset($_POST['password']) ) {
 		// Form was submitted
@@ -30,18 +30,29 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 							. $mysqli->real_escape_string($password)
 							."';";
 
-			$results = $mysqli->query($sql);
+			$sql_results = $mysqli->query($sql);
 			// TODO: Check for SQL Errors.
 
-			if ( $results->num_rows == 1 ) {
-				// Correct Credentials
-				$_SESSION['logged_in'] = true;
-				$_SESSION['full-name'] = $_POST['full-name'];
-				header('Location: index.php');
-			} else {
-				// Invalid credentials
-				$login_error = 'invalid';
+			if(!$sql_results) {
+				echo "We messed up logging in you in! Please try again!";
 			}
+			else {
+				if ( $sql_results->num_rows == 1 ) {
+
+					$results = $sql_results->fetch_assoc();
+
+					// Correct Credentials
+					$_SESSION['logged_in'] = true;
+					$_SESSION['email'] = $_POST['email'];
+					$_SESSION['full-name'] = $results['name'];
+					header('Location: index.php');
+				} else {
+					// Invalid credentials
+					$login_error = 'invalid';
+				}
+			}
+
+			
 		}
 
 	}
@@ -50,7 +61,6 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 	// User is already logged in.
 	header('Location: index.php');
 }
-
 ?>
 <!DOCTYPE html>
 <html>

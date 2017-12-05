@@ -2,7 +2,9 @@ q<!DOCTYPE html>
 <html>
 <head>
 	<title>About</title>
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 <style>
 	
 	#picture-container {
@@ -31,7 +33,8 @@ q<!DOCTYPE html>
 </style>
 </head>
 <body>
-	
+	<?php include 'nav.php'; ?>
+
 	<div id="picture-container">
 		<img src="imgs/white_house.jpg">
 		<h1 id="main-header">About Us</h1>

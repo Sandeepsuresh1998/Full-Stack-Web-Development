@@ -5,22 +5,43 @@
 	define('CONSUMER_PUBLIC_KEY', 'cACrabwDZcVdXWaRwG0uRzqLy');
 	define('CONSUMER_PRIVATE_KEY', 'qklULEuqFuIpzbwKORPZIPtSbvwYmQff1ypt0d1xo4B2HajifN');
 	$both = CONSUMER_PUBLIC_KEY . ":" . CONSUMER_PRIVATE_KEY;
-	define('BASE64_ENCODED_TOKEN', base64_encode($both));
+	define('CREDENTIALS', base64_encode($both));
+
+	define('TWITTER_SEARCH_URL', 'https://api.twitter.com/1.1/search/tweets.json');
 
 	//Sending the POST Request
 	define('TWITTER_TOKEN_ENDPOINT', 'https://api.twitter.com/oauth2/token');
 
 	//Setting the Header
-	$header = ['token_type ' . ': ' . 'Bearer' . 'access_token' ': ' BASE64_ENCODED_TOKEN];
+	$header = array('Authorization: Basic '.CREDENTIALS, 'Content-Type: application/x-www-form-urlencoded;charset=UTF-8');
 
-	//Setting up a channel
+	//Setting up a channel to request a token
 	$ch = curl_init();
-
 	curl_setopt($ch, CURLOPT_URL, TWITTER_TOKEN_ENDPOINT);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, 'grant_type=client_credentials');
 	curl_setopt($ch, CURLOPT_POST, true);
 	
+
+	$token_response = curl_exec($ch);
+	$token_response = json_decode($token_response, true);
+
+	var_dump($token_response);
+
+	if (isset($token_response['token_type']) && $token_response['token_type'] == 'bearer') {
+		$header = array('Authorization: Bearer '.$token_response['access_token']);
+
+		curl_setopt($ch, CURLOPT_URL, TWITTER_SEARCH_URL);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$info = curl_exec($ch);
+
+		var_dump($info);
+	} else {
+		echo "Uh oh!";
+	}
+
 ?>
 
 
@@ -38,30 +59,11 @@
 			text-align: center;
 			background-color: #00aced;
 		}
-		#results-container {
-			width: 100%;
-		}
-		#results-container img {
-			width: 100%;
-		}
 	</style>
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="index.php">Trump Tweets</a>
-	    </div>
-	    <ul class="nav navbar-nav">
-	      <li><a href="about.php">About Us</a></li>
-	    </ul>
-	    <ul class="nav navbar-nav navbar-right">
-	      <li><a href="registration.php"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-	      <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-	    </ul>
-	  </div>
-	</nav> <!-- End of Navbar -->
+	<?php include 'nav.php'; ?>
 
 
 	<div id="main-contianer" class="container-fluid">
@@ -76,14 +78,15 @@
 					</div>
 				</div>
 			</form>
-		</div>
+		</div> <!-- End of Search Bar -->
 
-		<div id="results-container">
-			<div>
-				<img src="imgs/trump_pointing.jpg" alt="trump_pointing">
-			</div>
-		</div>
-	</div>
+
+		<?php 
+			$from_trump_url_addition = "?q=" . urlencode('from:realDonaldTrump');
+
+
+			echo TWITTER_SEARCH_URL . $from_trump_url_addition;
+		?>
 	
 </body>
 </html>
