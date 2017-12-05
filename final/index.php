@@ -6,8 +6,9 @@
 	define('CONSUMER_PRIVATE_KEY', 'qklULEuqFuIpzbwKORPZIPtSbvwYmQff1ypt0d1xo4B2HajifN');
 	$both = CONSUMER_PUBLIC_KEY . ":" . CONSUMER_PRIVATE_KEY;
 	define('CREDENTIALS', base64_encode($both));
+	$from_trump_url_addition = "?q=" . urlencode('from:realDonaldTrump');
 
-	define('TWITTER_SEARCH_URL', 'https://api.twitter.com/1.1/search/tweets.json');
+	define('TWITTER_SEARCH_URL', 'https://api.twitter.com/1.1/search/tweets.json'.$from_trump_url_addition);
 
 	//Sending the POST Request
 	define('TWITTER_TOKEN_ENDPOINT', 'https://api.twitter.com/oauth2/token');
@@ -34,6 +35,7 @@
 
 		curl_setopt($ch, CURLOPT_URL, TWITTER_SEARCH_URL);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+		curl_setopt($ch, CURLOPT_POST, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$info = curl_exec($ch);
 
