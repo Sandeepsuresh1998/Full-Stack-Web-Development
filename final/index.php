@@ -30,7 +30,7 @@
 
 	var_dump($token_response);
 
-	if (isset($token_response['token_type']) && $token_response['token_type'] == 'bearer') {
+	if (isset($token_response['token_type']) && $token_response['token_type'] == 'bearer') :
 		$header = array('Authorization: Bearer '.$token_response['access_token']);
 
 		curl_setopt($ch, CURLOPT_URL, TWITTER_SEARCH_URL);
@@ -38,12 +38,12 @@
 		curl_setopt($ch, CURLOPT_POST, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$info = curl_exec($ch);
+		$info = json_decode($info);
 
 		var_dump($info);
-	} else {
-		echo "Uh oh!";
-	}
-
+	else :
+		echo "sakjnsfkjf";
+	endif;
 ?>
 
 
