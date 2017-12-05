@@ -36,7 +36,7 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 			if ( $results->num_rows == 1 ) {
 				// Correct Credentials
 				$_SESSION['logged_in'] = true;
-				$_SESSION['email'] = $_POST['email'];
+				$_SESSION['full-name'] = $_POST['full-name'];
 				header('Location: index.php');
 			} else {
 				// Invalid credentials
