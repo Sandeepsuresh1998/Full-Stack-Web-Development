@@ -1,25 +1,25 @@
 <?php
 	
 
-	// //Creating token
-	// define('CONSUMER_PUBLIC_KEY', 'cACrabwDZcVdXWaRwG0uRzqLy');
-	// define('CONSUMER_PRIVATE_KEY', 'qklULEuqFuIpzbwKORPZIPtSbvwYmQff1ypt0d1xo4B2HajifN');
-	// $both = CONSUMER_PUBLIC_KEY . ":" . CONSUMER_PRIVATE_KEY;
-	// define('BASE64_ENCODED_TOKEN', base64_encode($both));
+	//Creating token
+	define('CONSUMER_PUBLIC_KEY', 'cACrabwDZcVdXWaRwG0uRzqLy');
+	define('CONSUMER_PRIVATE_KEY', 'qklULEuqFuIpzbwKORPZIPtSbvwYmQff1ypt0d1xo4B2HajifN');
+	$both = CONSUMER_PUBLIC_KEY . ":" . CONSUMER_PRIVATE_KEY;
+	define('BASE64_ENCODED_TOKEN', base64_encode($both));
 
-	// //Sending the POST Request
-	// define('TWITTER_TOKEN_ENDPOINT', 'https://api.twitter.com/oauth2/token');
+	//Sending the POST Request
+	define('TWITTER_TOKEN_ENDPOINT', 'https://api.twitter.com/oauth2/token');
 
-	// //Setting the Header
-	// $header = ['token_type ' . ': ' . 'Bearer' . 'access_token' ': ' BASE64_ENCODED_TOKEN];
+	//Setting the Header
+	$header = ['token_type ' . ': ' . 'Bearer' . 'access_token' ': ' BASE64_ENCODED_TOKEN];
 
-	// //Setting up a channel
-	// $ch = curl_init();
+	//Setting up a channel
+	$ch = curl_init();
 
-	// curl_setopt($ch, CURLOPT_URL, TWITTER_TOKEN_ENDPOINT);
-	// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-	// curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_URL, TWITTER_TOKEN_ENDPOINT);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+	curl_setopt($ch, CURLOPT_POST, true);
 	
 ?>
 

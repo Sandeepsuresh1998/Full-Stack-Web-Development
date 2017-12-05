@@ -37,7 +37,7 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 				// Correct Credentials
 				$_SESSION['logged_in'] = true;
 				$_SESSION['email'] = $_POST['email'];
-				header('Location: ../song-db');
+				header('Location: index.php');
 			} else {
 				// Invalid credentials
 				$login_error = 'invalid';
@@ -48,7 +48,7 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 
 } else {
 	// User is already logged in.
-	header('Location: ../song-`');
+	header('Location: index.php');
 }
 
 ?>
