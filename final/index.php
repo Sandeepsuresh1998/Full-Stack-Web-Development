@@ -75,6 +75,15 @@
 			text-align: center;
 			background-color: #00aced;
 		}
+		#photo-container {
+			width: 200px;
+			margin-bottom: 10px;
+			margin: auto;
+		}
+		#photo-container img {
+			width: 100%;
+			padding-bottom: 10px;
+		}
 	</style>
 </head>
 <body>
@@ -93,7 +102,11 @@
 						<input type="submit" class="btn btn-primary" value="Submit">
 				</div>	
 			</form>
-		</div> <!-- End of Search Bar -->
+			
+			<div id="photo-container">
+				<img src="imgs/trump_pointing.jpg" alt="trump_pointing">
+			</div>
+		</div> <!-- End of Search Bar Container-->
 
 
 		<?php 
