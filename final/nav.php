@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="index.php">Trump Tweets</a>
@@ -17,9 +17,7 @@
 		    		<div class="navbar-brand" href="index.php">Hello, <?php echo $_SESSION['full-name']; ?>!</div>
 		    	</div>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-		    <?php endif; ?>
-
-		    
+		    <?php endif; ?>  
 	    </ul>
 	  </div>
-	</nav> <!-- End of Navbar -->
+</nav> <!-- End of Navbar -->
