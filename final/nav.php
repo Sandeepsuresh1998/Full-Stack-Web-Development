@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="index.php">Trump Tweets</a>
