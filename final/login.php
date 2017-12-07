@@ -68,7 +68,7 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Login | Trump Thoughts</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 
 	<style>
 	.form-check-label {
@@ -79,6 +79,8 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 </style>
 </head>
 <body>
+
+	<?php include 'nav.php'; ?>
 
 	<div class="container">
 		<div class="row">
@@ -135,5 +137,10 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 		</form>
 
 	</div> <!-- .container -->
+
+	<script>
+		var d = document.getElementById('login');
+		d.className += " active";
+	</script>
 </body>
 </html>

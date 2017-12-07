@@ -1,4 +1,4 @@
-q<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>About</title>
@@ -8,9 +8,9 @@ q<!DOCTYPE html>
 <style>
 	
 	#picture-container {
-		margin: auto;
 		position: relative;
 		width: 100%;
+		margin: 0;
 	}
 	#main-header {
 		left: 0;
@@ -18,6 +18,7 @@ q<!DOCTYPE html>
 		text-align: center;
 		width: 100%;
 		top: 10px;
+		color: #E8E8E8;
 	}
 	#picture-container h2 {
 		left: 0;
@@ -25,9 +26,17 @@ q<!DOCTYPE html>
 		text-align: center;
 		width: 100%;
 		top: 100px;
+		color: #E8E8E8;
 	}
 	#picture-container img {
 		width: 100%;
+		margin: 0;
+	}
+	#navbar {
+		margin: 0;
+	}
+
+	#navbar-inverse {
 		margin: 0;
 	}
 </style>
@@ -38,7 +47,12 @@ q<!DOCTYPE html>
 	<div id="picture-container">
 		<img src="imgs/white_house.jpg">
 		<h1 id="main-header">About Us</h1>
-		<h2>Our Mission: To be well informed on the opinioins of our president.</h2>
+		<h2>Our Mission: to be well informed on the opinions of our president.</h2>
 	</div>
+
+	<script>
+		var d = document.getElementById('about');
+		d.className += " active";
+	</script>
 </body>
 </html>

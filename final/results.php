@@ -5,9 +5,34 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+		.boxed {
+			border: 1px solid #C4C4C4;
+			padding: 10px;
+			margin: 30px;
+			box-shadow: 5px 5px #C4C4C4;
+			font-family: 'Roboto', sans-serif;
+		}
+		#header {
+			text-align: center;
+			font: 18px;
+		}
+
+		.boxed img {
+			width: 100px;
+		}
+
+
+	</style>
 </head>
 <body>
 	<?php include 'nav.php'; ?>
+
+
+	<h1 id='header'>Results</h1>
+
+
 	<?php
 		//Requesting Token
 		define('CONSUMER_PUBLIC_KEY', 'cACrabwDZcVdXWaRwG0uRzqLy');
@@ -70,10 +95,15 @@
 				</div>
 	<?php
 			else :
-				for ($i=0; $i < sizeof($info['statuses']); $i++) { 
-					echo $info['statuses'][$i]['full_text'];
-					echo "<hr>";
-				}
+				$i = 0;
+				while ( $i < sizeof($info['statuses'])) :
+	?>
+					<div class="boxed">
+						<?php echo $info['statuses'][$i]['full_text']; ?> 
+					</div>
+	<?php 
+					$i++;
+				endwhile;
 			endif;
 		else :
 			echo "Something went wrong";

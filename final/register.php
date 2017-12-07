@@ -11,6 +11,8 @@ require 'config.php';
 </head>
 <body>
 
+	<?php include 'nav.php'; ?>	
+
 	<div class="container">
 		<div class="row">
 			<h1 class="col-12 mt-4">User Registration</h1>
@@ -131,6 +133,11 @@ endif; /* ELSE for empty input validation */
 	</div> <!-- .row -->
 
 </div> <!-- .container -->
+
+<script>
+	var d = document.getElementById('home');
+	d.className += " active";
+</script>
 
 </body>
 </html>

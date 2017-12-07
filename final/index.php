@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +14,7 @@
 		#main-container {
 			position: absolute;
 			width: 100%;
-			height: 100px;
+			height: 100%;
 		}
 
 		#header-container {
@@ -49,14 +52,19 @@
 
 	<div id="main-container">
 		<div id="header-container" class="container-fluid">
-			<h1>Trump Thoughts</h1>	
+			<h1>Trump's Tweets</h1>	
+			
 		</div> <!-- End of Search Bar Container-->
 		<form action="results.php" method="GET" id="form-container">					
 			<input type="text" name="search-bar" id="search-bar" placeholder="Search...">
 		</form>
 	</div>
 
-			
+	<script>
+		var d = document.getElementById('home');
+		d.className += " active";
+	</script>
+	
 	
 </body>
 </html>

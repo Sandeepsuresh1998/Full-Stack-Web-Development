@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Register | Trump Tweets</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 
 	<style>
 	.form-check-label {
@@ -19,9 +19,11 @@
 </head>
 <body>
 
+	<?php include 'nav.php'; ?>
+
 	<div class="container">
 		<div class="row">
-			<h1 class="col-12 mt-4 mb-4">User Registration</h1>
+			<h1 class="col-12">User Registration</h1>
 		</div> <!-- .row -->
 	</div> <!-- .container -->
 
@@ -184,6 +186,9 @@
 				return false;
 			}
 		}
+
+		var d = document.getElementById('registration');
+		d.className += " active";
 
 	</script>
 
