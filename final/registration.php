@@ -15,6 +15,10 @@
 		padding-bottom: calc(.5rem - 1px * 2);
 		margin-bottom: 0;
 	}
+
+	.text-sm-right {
+		text-align: right;
+	}
 </style>
 </head>
 <body>

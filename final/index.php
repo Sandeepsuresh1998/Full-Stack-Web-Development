@@ -11,10 +11,15 @@
 	
 	<style>
 
+		body {
+			min-height: 100vh;
+			position: relative;
+		}
 		#main-container {
 			position: absolute;
-			width: 100%;
-			height: 100%;
+			top: 45%;
+ 			left: 50%;
+  			transform: translate(-50%, -50%);
 		}
 
 		#header-container {
@@ -31,17 +36,47 @@
 			text-align: center;
 		}
 		input[type=text] {
-			width: 500px;
+			width: auto;
+			padding: 20px;
+			height: auto;
 			background-image: url('imgs/search_icon.png');
+			background-size: 30px auto;
+			padding-left: 50px;
     		background-position: 10px 10px;
-    		background-color: white;
     		background-repeat: no-repeat;
     		font-size: 20px;
     		box-sizing: border-box;
 		    border: 2px solid #ccc;
 		    border-radius: 4px;
-		    padding: 12px 20px 12px 40px;
+		    
 		    box-shadow: 2px 2px 2px 2px lightgrey;
+		}
+
+		/* Small devices (tablets, 768px and up) */
+		@media (min-width: 768px) {
+			input[type=text] {
+				width: 400px;
+				height: 50px;
+				background-size: 25px;
+			}
+		}
+
+		/* Medium devices (desktops, 992px and up) */
+		@media (min-width: 992px) {
+			input[type=text] {
+				width: 600px;
+				height: 50px;
+				background-size: 25px;
+			}
+		}
+
+		/* Large devices (large desktops, 1200px and up) */
+		@media (min-width: 1200px;) {
+			input[type=text] {
+				width: 700px;
+				height: 50px;
+				background-size: 25px;
+			}
 		}
 
 	</style>
@@ -53,7 +88,7 @@
 	<div id="main-container">
 		<div id="header-container" class="container-fluid">
 			<h1>Trump's Tweets</h1>	
-			
+
 		</div> <!-- End of Search Bar Container-->
 		<form action="results.php" method="GET" id="form-container">					
 			<input type="text" name="search-bar" id="search-bar" placeholder="Search...">

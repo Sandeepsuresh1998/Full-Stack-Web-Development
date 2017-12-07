@@ -76,6 +76,10 @@ if ( !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false ) {
 		padding-bottom: calc(.5rem - 1px * 2);
 		margin-bottom: 0;
 	}
+
+	.text-sm-right {
+		text-align: right;
+	}
 </style>
 </head>
 <body>

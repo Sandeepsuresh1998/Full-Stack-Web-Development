@@ -32,11 +32,7 @@
 		width: 100%;
 		margin: 0;
 	}
-	#navbar {
-		margin: 0;
-	}
-
-	#navbar-inverse {
+	.navbar {
 		margin: 0;
 	}
 </style>
