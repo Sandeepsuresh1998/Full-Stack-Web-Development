@@ -15,15 +15,9 @@
 			min-height: 100vh;
 			position: relative;
 		}
-		#main-container {
-			position: absolute;
-			top: 45%;
- 			left: 50%;
-  			transform: translate(-50%, -50%);
-		}
-
+	
 		#header-container {
-			width: 400px;
+			width: auto;
 			height: 100px;
 			text-align: center;
 			margin: auto;
@@ -59,14 +53,19 @@
 				height: 50px;
 				background-size: 25px;
 			}
+			#main-container {
+				position: absolute;
+				top: 45%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+			}
+
 		}
 
 		/* Medium devices (desktops, 992px and up) */
 		@media (min-width: 992px) {
 			input[type=text] {
 				width: 600px;
-				height: 50px;
-				background-size: 25px;
 			}
 		}
 
@@ -74,8 +73,6 @@
 		@media (min-width: 1200px;) {
 			input[type=text] {
 				width: 700px;
-				height: 50px;
-				background-size: 25px;
 			}
 		}
 
