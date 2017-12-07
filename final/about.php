@@ -8,6 +8,7 @@
 <style>
 	
 	#picture-container {
+		margin: auto;
 		position: relative;
 		width: 100%;
 		margin: 0;
@@ -21,10 +22,10 @@
 		color: #E8E8E8;
 	}
 	#picture-container h2 {
-		left: 0;
+		margin: auto;
 		position: absolute;
 		text-align: center;
-		width: 100%;
+		left: 25%;
 		top: 100px;
 		color: #E8E8E8;
 	}

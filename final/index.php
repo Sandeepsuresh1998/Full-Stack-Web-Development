@@ -42,7 +42,6 @@
     		box-sizing: border-box;
 		    border: 2px solid #ccc;
 		    border-radius: 4px;
-		    
 		    box-shadow: 2px 2px 2px 2px lightgrey;
 		}
 
@@ -56,8 +55,8 @@
 			#main-container {
 				position: absolute;
 				top: 45%;
-					left: 50%;
-					transform: translate(-50%, -50%);
+				left: 50%;
+				transform: translate(-50%, -50%);
 			}
 
 		}
