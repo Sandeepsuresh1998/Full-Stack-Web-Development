@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	require 'config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,6 +64,19 @@
 		//Default URL
 		$twitter_search_url = 'https://api.twitter.com/1.1/search/tweets.json?q=';
 
+		if (isset($token_response['token_type']) && $token_response['token_type'] == 'bearer') {
+			$header = array('Authorization: Bearer '.$token_response['access_token']);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+			curl_setopt($ch, CURLOPT_POST, false);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		}
+
+		else {
+			exit();
+		}
+		
+		//Default URL
+		$twitter_lookup_url = 'https://api.twitter.com/1.1/statuses/lookup.json?id=';
 
 		//Now we transition into getting the tweet id's
 		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, USER_DB_NAME);
@@ -76,7 +90,7 @@
 					FROM starred_tweets 
 					WHERE user_email = '"
 					.$_SESSION['email']
-					."';"
+					."';";
 
 			$sql_results = $mysqli->query($sql);
 
@@ -84,11 +98,27 @@
 				echo "Something went wrong on our end!";
 			else :
 				//Print all the tweets for the user
-				$count = 0;
-				while ($count < $sql_results->) {
-					# code...
-				}
+				while ($row = $sql_results->fetch_assoc()) :
+					$twitter_lookup_url .= $row['tweet'];
+					$twitter_lookup_url .= '&tweet_mode=extended';
+					curl_setopt($ch, CURLOPT_URL, $twitter_lookup_url);
+
+
+					$info = curl_exec($ch);
+					$info = json_decode($info, true);
+
+					//Revert the lookup_url back to the original
+					$twitter_lookup_url = 'https://api.twitter.com/1.1/statuses/lookup.json?id=';
+
+				?>
+					<div class="boxed">
+						<?php echo $info[0]['full_text']; ?> 
+					</div> 
+	<?php
+				endwhile;
 			endif;
+			$mysqli->close();
+		endif;
 
 	?>
 </body>

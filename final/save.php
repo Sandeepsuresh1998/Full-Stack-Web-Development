@@ -32,6 +32,6 @@
 			]);
 
 		endif;
-
+		$mysqli->close();
 	endif;
 ?>

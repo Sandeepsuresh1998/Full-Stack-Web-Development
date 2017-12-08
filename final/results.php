@@ -102,10 +102,7 @@
 	?>
 					<div class="boxed">
 						<?php echo $info['statuses'][$i]['full_text']; ?> 
-						<?php if ( isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true ) : ?>	
-							<!-- This will be for registered users trying to save something -->
-							<button type="submit" class="btn-info starred-button" tweet-id="<?php echo $info['statuses'][$i]['id_str']; ?>" ><span class="glyphicon glyphicon-star-empty"></span></button>	
-						<?php endif; ?> 
+						<button class="btn-info starred-button" tweet-id="<?php echo $info['statuses'][$i]['id_str']; ?>"><span class="glyphicon glyphicon-star-empty"></span></button>
 					</div>
 	<?php 
 					$i++;
