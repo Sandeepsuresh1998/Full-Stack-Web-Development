@@ -90,25 +90,12 @@ else :
 								. $_POST['party']
 								. ");";
 
-				echo $sql;
-
 				$results = $mysqli->query($sql);
 
 				if (!$results) :
 					echo "Something went wrong when we tried to add you to the database! Are you a virus?";
 					echo $mysqli->error;
 				else :
-
-					$to = $_POST['email'];
-					$subject = "Welcome to Trump Thoughts";
-					$msg = "<h1>Hello!</h1>
-									<div>You now have an inside scoop to the consciousness of our President! Please share with your friends and family, so we as a nation can be better informed on who we are voting for in 2020!</div>";
-					$headers = "Content-Type: text/html"
-										."\r\n"
-										."From: no-reply@trump.gov";
-
-					mail($to, $subject, $msg, $headers);
-
 	?>
 		<div class="text-success">
 			User <?php echo $_POST['full-name']; ?> was successfully registered.
