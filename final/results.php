@@ -63,7 +63,6 @@
 
 		//Default URL
 		$twitter_search_url = 'https://api.twitter.com/1.1/search/tweets.json?q=';
-		// $tweet_extended = urlencode('&tweet_mode=extended parameter');
 
 		if (isset($token_response['token_type']) && $token_response['token_type'] == 'bearer') :
 			$header = array('Authorization: Bearer '.$token_response['access_token']);
@@ -140,8 +139,8 @@
 				if (xhr.readyState == XMLHttpRequest.DONE) {
 					if (xhr.status == 200) {
 
-						// returnFunction( xhr.responseText );
-						returnFunction( JSON.parse(xhr.responseText) );
+						returnFunction( xhr.responseText );
+						// returnFunction( JSON.parse(xhr.responseText) );
 
 					} else {
 						alert('AJAX Error.');
