@@ -7,7 +7,7 @@ require 'config.php';
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Registration Confirmation</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
